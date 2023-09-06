@@ -29,6 +29,33 @@ class Counter extends React.Component {
     }
   };
 
+  // using "traditional" If/else statement
+
+  // isEven = () =>{
+  //   console.log('am i running?')
+  //   if(this.state.count%2===0){
+  //     // output something if even
+  //     return(<h2>THIS IS EVEN!</h2>)
+  //   }else{
+  //     // output nothing
+  //     return null
+  //   }
+  // }
+
+  /**
+   * "traditional if / else"
+   * if(some condition here){
+   *   do something if the condition is met
+   * } else{
+   *  do something else if the IF conditon is not met
+   * }
+   *
+   * Turnary statement
+   *
+   * someConditionHere? (return something if condition is met) : (return something if the conditoin is NOT met)
+   *
+   */
+
   // life cycles
 
   componentDidMount() {
@@ -51,6 +78,10 @@ class Counter extends React.Component {
     }
   }
 
+  mouseLeave = () => {
+    console.log("Please don't leave me");
+  };
+
   componentWillUnmount() {
     // runs when our component is shut down
     console.log("component will unmount");
@@ -60,9 +91,18 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <h1 className={this.state.color}>Hello {this.props.firstName}!</h1>
+        <h1
+          className={this.state.color}
+          onMouseLeave={() => {
+            this.mouseLeave();
+          }}
+        >
+          Hello {this.props.firstName}!
+        </h1>
         <br />
         <p>Welcome to my first component</p>
+        {/* {this.isEven()} */}
+        {this.state.count % 2 === 0 ? <h3>THIS IS EVEN!</h3> : null}
         <p>{this.state.count}</p>
         <br />
         <button
@@ -79,6 +119,15 @@ class Counter extends React.Component {
         >
           -
         </button>
+
+        {/* <input
+        id='input'
+          onFocus={(e) => {
+            console.log("Focused on input");
+            console.log(e)
+          }}
+          placeholder="onFocus is triggered when you click this input."
+        /> */}
       </div>
     );
   }
