@@ -9,12 +9,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      nameList: [
-        { id: 1, name: "Sathya" },
-        { id: 2, name: "Matthew" },
-        { id: 3, name: "Karen" },
-        { id: 4, name: "Spencer" },
-      ],
+      nameList: [],
+
+      firstName: "",
+      lastName: "",
     };
   }
 
@@ -44,6 +42,35 @@ class App extends React.Component {
     });
   };
 
+  handleChange = (e) => {
+    if (e.target.id === "firstName") {
+      this.setState({ firstName: e.target.value });
+    } else if (e.target.id === "lastName") {
+      this.setState({lastName: e.target.value})
+    }
+  };
+
+  handleSubmit=(e)=>{
+    e.preventDefault()
+
+    const name = `${this.state.firstName} ${this.state.lastName}`
+
+    const data = {id: this.state.nameList.length+1, name}
+
+    this.setState({
+      nameList: [...this.state.nameList, data], 
+      firstName: '',
+      lastName: ''
+    })
+    
+  }
+
+  componentDidUpdate(){
+    console.log(this.state)
+  }
+
+
+
   render() {
     return (
       <div className="App">
@@ -52,11 +79,49 @@ class App extends React.Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <form onSubmit={(event)=>{
+            this.handleSubmit(event)
+          }}>
+            <label>
+              First Name:
+              <br />
+              <input
+                id="firstName"
+                type="text"
+                value={this.state.firstName}
+                onChange={(event) => {
+                  this.handleChange(event);
+                }}
+              />
+            </label>
+            <br />
+            <label>
+              Last Name:
+              <br />
+              <input
+                id="lastName"
+                type="text"
+                value={this.state.lastName}
+                onChange={(event) => {
+                  this.handleChange(event);
+                }}
+              />
+            </label>
+            <br />
+            <input type='datetime-local'/>
+            <input type='password'/>
+            <input type='submit'/>
+          </form>
 
           <button
-            onClick={() => {
-              this.shiftUser();
-            }}
+            style={{ marginTop: "15px" }}
+            // onClick={() => {
+            //   this.shiftUser();
+            // }}
+            // onClick={()=>{
+            //   this.shiftUser()
+            // }}
+            onClick={this.shiftUser}
           >
             SHIFT
           </button>

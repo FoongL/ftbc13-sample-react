@@ -1,7 +1,7 @@
 import React from "react";
 import "./counter.css";
 
-class Counter extends React.Component {
+export default class Counter extends React.Component {
   constructor(props) {
     super(props);
 
@@ -58,10 +58,10 @@ class Counter extends React.Component {
 
   // life cycles
 
-  componentDidMount() {
-    // runs when our component first starts
-    console.log("component did mount");
-  }
+  // componentDidMount() {
+  //   // runs when our component first starts
+  //   console.log("component did mount");
+  // }
 
   componentDidUpdate(_prevProps, prevState) {
     // runs when our component is updated
@@ -133,4 +133,4 @@ class Counter extends React.Component {
   }
 }
 
-export default Counter;
+// export default Counter;
