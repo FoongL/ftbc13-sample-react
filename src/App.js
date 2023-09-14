@@ -4,6 +4,7 @@ import "./App.css";
 
 import Counter from "./components/counter/counter.js";
 import JointCounter from "./components/jointCounter/jointCounter";
+import FancyBorder from "./components/fanceBorder/fancyBorder";
 
 class App extends React.Component {
   constructor(props) {
@@ -89,9 +90,11 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <FancyBorder>
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          </FancyBorder>
           <form
             onSubmit={(event) => {
               this.handleSubmit(event);
@@ -146,13 +149,15 @@ class App extends React.Component {
 
           {this.state.nameList.map((user, index) => {
             return (
-              <JointCounter
-                firstName={user.name}
-                key={user.id}
-                jointCount={this.state.jointCount}
-                increment = {this.increment}
-                decrement = {this.decrement}
-              />
+              <FancyBorder>
+                <JointCounter
+                  firstName={user.name}
+                  key={user.id}
+                  jointCount={this.state.jointCount}
+                  increment={this.increment}
+                  decrement={this.decrement}
+                />
+              </FancyBorder>
             );
           })}
 
